@@ -20,12 +20,14 @@ class HomeController
         include "./src/pages/home.php";
     }
 
-    public function addPost($data = '')
+    public function addPost(array $data = [])
     {
         if (!empty($data['name'])) {
             $this->articleRepository->addPost($data);
-            echo "<p>Post was added</p>";
+            header('Location: /');
+        } else {
+            include "./src/pages/add_post.php";
         }
-        include "./src/pages/addPost.php";
+
     }
 }
