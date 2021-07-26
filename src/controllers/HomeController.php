@@ -20,13 +20,16 @@ class HomeController
         include "./src/pages/home.php";
     }
 
+    public function viewAddPost()
+    {
+        include "./src/pages/add_post.php";
+    }
+
     public function addPost(array $data = [])
     {
         if (!empty($data['name'])) {
             $this->articleRepository->addPost($data);
             header('Location: /');
-        } else {
-            include "./src/pages/add_post.php";
         }
 
     }

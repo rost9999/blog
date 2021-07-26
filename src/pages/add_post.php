@@ -11,7 +11,7 @@
 <div class="container">
     <div class="row">
         <div class="col"></div>
-        <form action="" method="post">
+        <form action="/home/addPost" method="post">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="name" name="name">
             </div>
