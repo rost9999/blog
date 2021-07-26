@@ -24,7 +24,7 @@ class HomeController
     {
         if (!empty($data['name'])) {
             $this->articleRepository->addPost($data);
-            echo "<p>Post was added";
+            echo "<p>Post was added</p>";
         }
         include "./src/pages/addPost.php";
     }
