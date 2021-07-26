@@ -1,6 +1,3 @@
-<?php
-/** @var array $articles */
-?>
 <!doctype html>
 <html lang="ru">
 <head>
@@ -25,27 +22,10 @@
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-        <table class="table">
-            <thead>
-            <tr>
-                <?php foreach (array_keys($articles[0]) as $key => $value): ?>
-                    <th scope="col"><?= $value; ?></th>
-                <?php endforeach; ?>
-            </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($articles as $key => $value): ?>
-                <tr>
-                    <th scope="row"><?= $value['id']; ?></th>
-                    <td><?= $value['name']; ?></td>
-                    <td><?= $value['text']; ?></td>
-                </tr>
-            <?php endforeach; ?>
-            </tbody>
-        </table>
 
     </div>
 </div>
+
 
 </body>
 </html>

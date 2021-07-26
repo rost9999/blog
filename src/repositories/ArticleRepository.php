@@ -1,24 +1,33 @@
 <?php
 
 namespace repositories;
-Use PDO;
 
-class Articlerepository
+use PDO;
+
+
+class ArticleRepository
 {
     public function __construct()
     {
         $this->db = new PDO('mysql:host=localhost;dbname=task3', 'root', 'qwer1234');
     }
 
-    public function get_all(){
+    public function getAll(): array
+    {
         $stmt = $this->db->query("SELECT * FROM `articles`");
-        $articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $articles;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function get_article($id){
+
+    public function getArticle($id): array
+    {
         $stmt = $this->db->query("SELECT * FROM `articles` WHERE `id` = $id");
-        $article = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $article;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function addPost($data)
+    {
+        $sql = $this->db->prepare("INSERT INTO `articles` (name,text) VALUES (:name,:text)");
+        $sql->execute($data);
     }
 
 

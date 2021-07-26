@@ -15,8 +15,17 @@ class HomeController
 
     public function default()
     {
-        $articles = $this->articleRepository->get_all();
+        $articles = $this->articleRepository->getAll();
 
         include "./src/pages/home.php";
+    }
+
+    public function addPost($data = '')
+    {
+        if (!empty($data['name'])) {
+            $this->articleRepository->addPost($data);
+            echo "<p>Post was added";
+        }
+        include "./src/pages/addPost.php";
     }
 }

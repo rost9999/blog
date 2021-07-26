@@ -20,7 +20,7 @@ if (empty($method)) {
 
 if (method_exists($controllerName, $method)) {
     $controller = new $controllerName();
-    $controller->$method();
+    $controller->$method($_POST);
 } else {
     http_response_code(404);
     echo 404;
