@@ -1,0 +1,17 @@
+{
+  "name": "admin/task4",
+  "authors": [
+    {
+      "name": "Rost",
+      "email": "wr2st12@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "7.4^"
+  },
+  "autoload": {
+    "psr-4": {
+      "": "src/"
+    }
+  }
+}
