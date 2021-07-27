@@ -44,4 +44,10 @@ class HomeController
         $this->articleRepository->editPost($data, $id);
         header('Location: /');
     }
+
+    public function deletePost($data, $id)
+    {
+        $this->articleRepository->deletePost($id);
+        header('Location: /');
+    }
 }

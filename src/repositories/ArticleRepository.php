@@ -39,4 +39,10 @@ class ArticleRepository
 
     }
 
+    public function deletePost($id)
+    {
+        $sql = $this->db->prepare("DELETE FROM `articles` WHERE  `id` = $id");
+        $sql->execute(['id' => $id]);
+    }
+
 }
