@@ -22,7 +22,7 @@ class HomeController
 
     public function viewAddPost()
     {
-        include "./src/pages/add_post.php";
+        include "./src/pages/edit_post.php";
     }
 
     public function addPost(array $data)
