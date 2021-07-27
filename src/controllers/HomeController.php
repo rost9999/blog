@@ -33,4 +33,17 @@ class HomeController
         }
 
     }
+
+    public function viewEditPost($data, $id)
+    {
+        $oldData = $this->articleRepository->getArticle($id);
+        include "./src/pages/edit_post.php";
+
+    }
+
+    public function editPost($data, $id)
+    {
+        $this->articleRepository->editPost($data, $id);
+        header('Location: /');
+    }
 }

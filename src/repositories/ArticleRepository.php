@@ -23,7 +23,7 @@ class ArticleRepository
     public function getArticle(int $id): array
     {
         $stmt = $this->db->query("SELECT * FROM `articles` WHERE `id` = $id");
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
     }
 
     public function addPost(array $data)
@@ -32,5 +32,11 @@ class ArticleRepository
         $sql->execute($data);
     }
 
+    public function editPost($data, $id)
+    {
+        $sql = $this->db->prepare("UPDATE `articles` SET name = :name, text = :text WHERE id = $id");
+        $sql->execute($data);
+
+    }
 
 }
