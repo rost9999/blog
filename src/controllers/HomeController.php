@@ -25,13 +25,11 @@ class HomeController
         include "./src/pages/add_post.php";
     }
 
-    public function addPost(array $data = [])
+    public function addPost(array $data)
     {
-        if (!empty($data['name'])) {
-            $this->articleRepository->addPost($data);
-            header('Location: /');
-        }
 
+        $this->articleRepository->addPost($data);
+        header('Location: /');
     }
 
     public function viewEditPost($data, $id)

@@ -13,7 +13,7 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="col"></div>
+        <div class="col">
         <form action="" method="post">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="name" name="name">
@@ -41,7 +41,7 @@
             <?php endforeach; ?>
             </tbody>
         </table>
-
+        </div>
     </div>
 </div>
 </body>
