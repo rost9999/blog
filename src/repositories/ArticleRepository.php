@@ -26,20 +26,20 @@ class ArticleRepository
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function addPost(array $data)
+    public function addPost(): void
     {
         $sql = $this->db->prepare("INSERT INTO `articles` (name,text) VALUES (:name,:text)");
-        $sql->execute($data);
+        $sql->execute(['name' => $_POST['name'], 'text' => $_POST['text']]);
     }
 
-    public function editPost($data, $id)
+    public function editPost(int $id)
     {
         $sql = $this->db->prepare("UPDATE `articles` SET name = :name, text = :text WHERE id = $id");
-        $sql->execute($data);
+        $sql->execute(['name' => $_POST['name'], 'text' => $_POST['text']]);
 
     }
 
-    public function deletePost($id)
+    public function deletePost(int $id)
     {
         $sql = $this->db->prepare("DELETE FROM `articles` WHERE  id =:id");
         $sql->execute(['id' => $id]);

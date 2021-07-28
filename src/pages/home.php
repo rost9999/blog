@@ -13,14 +13,14 @@
 <body>
 <div class="container">
     <a href="/home/viewAddPost" type="button" class="btn btn-success">Add Post</a>
-    <?php foreach ($articles as $key => $value): ?>
+    <?php foreach ($articles as $article): ?>
         <div class="row">
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title"><?= $value['name']; ?></h5>
-                        <p class="card-text"><?= $value['text']; ?></p>
-                        <a href="/home/viewPost/<?= $value['id']; ?>" class="btn btn-primary">Read</a>
+                        <h5 class="card-title"><?= $article['name']; ?></h5>
+                        <p class="card-text"><?= $article['text']; ?></p>
+                        <a href="/home/viewPost/<?= $article['id']; ?>" class="btn btn-primary">Read</a>
                     </div>
                 </div>
             </div>

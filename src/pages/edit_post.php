@@ -1,9 +1,6 @@
 <?php
-$oldData['id'] = $oldData['id'] ?? "";
-$oldData['name'] = $oldData['name'] ?? "";
-$oldData['text'] = $oldData['text'] ?? "";
-
-if ($oldData['id'] == "") {
+$article['id'] = $article['id'] ?? "";
+if ($article['id'] == "") {
     $method = "addPost";
 } else {
     $method = "editPost";
@@ -24,14 +21,14 @@ if ($oldData['id'] == "") {
 <div class="container">
     <div class="row">
         <div class="col">
-            <form action="/home<?php echo "/" . $method . "/" . $oldData['id']; ?>" method="post">
+            <form action="/home<?= "/" . $method . "/" . $article['id']; ?>" method="post">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="name" name="name"
-                           value=<?php echo $oldData['name']; ?>>
+                           value=<?= $article['name'] ?? ""; ?>>
                 </div>
                 <div class="form-group">
                 <textarea class="form-control" placeholder="textarea"
-                          name="text"><?php echo $oldData['text']; ?></textarea>
+                          name="text"><?= $article['text'] ?? ""; ?></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
