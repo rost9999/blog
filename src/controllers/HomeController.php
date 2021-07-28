@@ -20,6 +20,13 @@ class HomeController
         include "./src/pages/home.php";
     }
 
+    public function viewPost($data,$id)
+    {
+        $articles = $this->articleRepository->getArticle($id);
+
+        include "./src/pages/post.php";
+    }
+
     public function viewAddPost()
     {
         include "./src/pages/edit_post.php";

@@ -20,10 +20,10 @@ class ArticleRepository
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getArticle(int $id): array
+    public function getArticle($id): array
     {
         $stmt = $this->db->query("SELECT * FROM `articles` WHERE `id` = $id");
-        return $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function addPost(array $data)
@@ -41,7 +41,7 @@ class ArticleRepository
 
     public function deletePost($id)
     {
-        $sql = $this->db->prepare("DELETE FROM `articles` WHERE  `id` = $id");
+        $sql = $this->db->prepare("DELETE FROM `articles` WHERE  id =:id");
         $sql->execute(['id' => $id]);
     }
 

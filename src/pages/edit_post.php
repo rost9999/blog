@@ -1,6 +1,15 @@
 <?php
-/** @var array $oldData */
+$oldData['id'] = $oldData['id'] ?? "";
+$oldData['name'] = $oldData['name'] ?? "";
+$oldData['text'] = $oldData['text'] ?? "";
+
+if ($oldData['id'] == "") {
+    $method = "addPost";
+} else {
+    $method = "editPost";
+}
 ?>
+
 <!doctype html>
 <html lang="ru">
 <head>
@@ -15,7 +24,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <form action="/home/editPost/<?php echo $oldData['id']; ?>" method="post">
+            <form action="/home<?php echo "/" . $method . "/" . $oldData['id']; ?>" method="post">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="name" name="name"
                            value=<?php echo $oldData['name']; ?>>

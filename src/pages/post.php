@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="container">
-    <a href="/home/viewAddPost" type="button" class="btn btn-success">Add Post</a>
+    <a href="/" type="button" class="btn btn-success">Back</a>
     <?php foreach ($articles as $key => $value): ?>
         <div class="row">
             <div class="col">
@@ -20,7 +20,8 @@
                     <div class="card-body">
                         <h5 class="card-title"><?= $value['name']; ?></h5>
                         <p class="card-text"><?= $value['text']; ?></p>
-                        <a href="/home/viewPost/<?= $value['id']; ?>" class="btn btn-primary">Read</a>
+                        <a href="/home/viewAddPost/<?= $value['id']; ?>" class="btn btn-success">Edit</a>
+                        <a href="/home/deletePost/<?= $value['id']; ?>" class="btn btn-danger">Delete</a>
                     </div>
                 </div>
             </div>
