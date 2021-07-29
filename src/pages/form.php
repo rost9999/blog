@@ -1,10 +1,5 @@
 <?php
-$article['id'] = $article['id'] ?? "";
-if ($article['id'] == "") {
-    $method = "addPost";
-} else {
-    $method = "editPost";
-}
+/** @var array $data */
 ?>
 
 <!doctype html>
@@ -16,19 +11,18 @@ if ($article['id'] == "") {
           integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <title>Edit Post</title>
 </head>
-
 <body>
 <div class="container">
     <div class="row">
         <div class="col">
-            <form action="/home<?= "/" . $method . "/" . $article['id']; ?>" method="post">
+            <form action="/home/<?= !empty($data) ? "editPost/" . $data['id'] : "addPost" ?>" method="post">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="name" name="name"
-                           value=<?= $article['name'] ?? ""; ?>>
+                           value=<?= $data['name'] ?? ""; ?>>
                 </div>
                 <div class="form-group">
                 <textarea class="form-control" placeholder="textarea"
-                          name="text"><?= $article['text'] ?? ""; ?></textarea>
+                          name="text"><?= $data['text'] ?? ""; ?></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

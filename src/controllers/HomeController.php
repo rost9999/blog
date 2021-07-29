@@ -3,6 +3,7 @@
 namespace controllers;
 
 use repositories\ArticleRepository;
+use views\View;
 
 class HomeController
 {
@@ -16,8 +17,8 @@ class HomeController
     public function default(): void
     {
         $articles = $this->articleRepository->getAll();
+        View::render('home',['articles'=>$articles]);
 
-        include "./src/pages/home.php";
     }
 
     public function viewPost(int $id): void
@@ -29,21 +30,19 @@ class HomeController
 
     public function viewAddPost(): void
     {
-        include "./src/pages/edit_post.php";
+        include "./src/pages/form.php";
     }
 
     public function addPost(): void
     {
-
-        $this->articleRepository->addPost($_POST);
+        $this->articleRepository->addPost($_POST['name'], $_POST['text']);
         header('Location: /');
     }
 
     public function viewEditPost(int $id): void
     {
         $article = $this->articleRepository->getArticle($id)[0];
-        include "./src/pages/edit_post.php";
-
+        include "./src/pages/form.php";
     }
 
     public function editPost(int $id): void

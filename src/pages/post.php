@@ -1,5 +1,5 @@
 <?php
-/** @var array $articles */
+/** @var array $data */
 ?>
 <!doctype html>
 <html lang="ru">
@@ -13,7 +13,7 @@
 <body>
 <div class="container">
     <a href="/" type="button" class="btn btn-success">Back</a>
-    <?php foreach ($articles as $article): ?>
+    <?php foreach ($data['article'] as $article): ?>
         <div class="row">
             <div class="col">
                 <div class="card">
