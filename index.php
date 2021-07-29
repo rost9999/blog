@@ -4,6 +4,8 @@ require_once "./vendor/autoload.php";
 
 use controllers\HomeController;
 
+session_start();
+
 $url = explode('/', $_SERVER['REQUEST_URI']);
 $controllerName = $url[1];
 $method = $url[2] ?? null;

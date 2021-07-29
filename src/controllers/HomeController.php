@@ -17,20 +17,19 @@ class HomeController
     public function default(): void
     {
         $articles = $this->articleRepository->getAll();
-        View::render('home',['articles'=>$articles]);
+        View::render('home', ['articles' => $articles]);
 
     }
 
     public function viewPost(int $id): void
     {
-        $articles = $this->articleRepository->getArticle($id);
-
-        include "./src/pages/post.php";
+        $article = $this->articleRepository->getArticle($id);
+        View::render('post', ['article' => $article]);
     }
 
     public function viewAddPost(): void
     {
-        include "./src/pages/form.php";
+        View::render('form');
     }
 
     public function addPost(): void
@@ -41,8 +40,9 @@ class HomeController
 
     public function viewEditPost(int $id): void
     {
-        $article = $this->articleRepository->getArticle($id)[0];
-        include "./src/pages/form.php";
+
+        $article = $this->articleRepository->getArticle($id);
+        View::render('form', ['article' => $article]);
     }
 
     public function editPost(int $id): void

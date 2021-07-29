@@ -1,5 +1,14 @@
 <?php
 /** @var array $content */
+if (!empty($_SESSION['login'])) {
+    $greetings = "hello :" . $_SESSION['login'];
+    $method = "/users/logout";
+    $textButton = 'LogOut';
+} else {
+    $greetings = "please login";
+    $method = "/users";
+    $textButton = 'Login';
+}
 ?>
 <!doctype html>
 <html lang="ru">
@@ -14,12 +23,19 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <a href="/home/viewAddPost" type="button" class="btn btn-success">Add Post</a>
+            <?= $_SERVER['REQUEST_URI'] == "/" ?
+                '<a href="/home/viewAddPost" type="button" class="btn btn-success">Add Post</a>'
+                :
+                '<a href="/" type="button" class="btn btn-success">Back</a>'
+            ?>
+        </div>
+        <div class="col">
+            <p class="text-end"><?= $greetings ?> </p>
+            <a href=<?= $method ?> type="button" class="btn btn-success float-end"><?= $textButton ?></a>
         </div>
     </div>
-</div>
 
-<?= $content; ?>
+    <?= $content; ?>
 
 </body>
 </html>
