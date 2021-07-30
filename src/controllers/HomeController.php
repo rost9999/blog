@@ -1,6 +1,6 @@
 <?php
 
-namespace controllers;
+namespace Controllers;
 
 use repositories\ArticleRepository;
 use views\View;
@@ -18,42 +18,41 @@ class HomeController
     {
         $articles = $this->articleRepository->getAll();
         View::render('home', ['articles' => $articles]);
-
     }
 
-    public function viewPost(int $id): void
+    public function viewArticle(int $id): void
     {
         $article = $this->articleRepository->getArticle($id);
-        View::render('post', ['article' => $article]);
+        View::render('article', ['article' => $article]);
     }
 
-    public function viewAddPost(): void
+    public function viewAddArticle(): void
     {
         View::render('form');
     }
 
-    public function addPost(): void
+    public function addArticle(): void
     {
-        $this->articleRepository->addPost($_POST['name'], $_POST['text']);
+        $this->articleRepository->addArticle($_POST['name'], $_POST['text']);
         header('Location: /');
     }
 
-    public function viewEditPost(int $id): void
+    public function viewEditArticle(int $id): void
     {
 
         $article = $this->articleRepository->getArticle($id);
         View::render('form', ['article' => $article]);
     }
 
-    public function editPost(int $id): void
+    public function editArticle(int $id): void
     {
-        $this->articleRepository->editPost($id);
+        $this->articleRepository->editArticle($id,$_POST['name'],$_POST['text']);
         header('Location: /');
     }
 
-    public function deletePost(int $id): void
+    public function deleteArticle(int $id): void
     {
-        $this->articleRepository->deletePost($id);
+        $this->articleRepository->deleteArticle($id);
         header('Location: /');
     }
 }

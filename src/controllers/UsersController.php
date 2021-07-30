@@ -1,8 +1,6 @@
 <?php
 
-
-namespace controllers;
-
+namespace Controllers;
 
 use repositories\UserRepository;
 use views\View;
@@ -21,14 +19,13 @@ class UsersController
         View::render('login_form');
     }
 
-    public function choice()
+    public function choice(): void
     {
         if (isset($_POST['login'])) {
             $this->login();
         } else {
             $this->register();
         }
-
     }
 
     public function register(): void

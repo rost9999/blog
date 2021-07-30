@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <div class="row">
     <div class="col-md-auto">
         <form action="/users/choice" method="post">
