@@ -6,11 +6,13 @@ use PDO;
 
 class ArticleRepository
 {
-    protected PDO $pdo;
+
+
+    private PDO $pdo;
 
     public function __construct()
     {
-        $this->pdo = new PDO('mysql:host=localhost;dbname=task3', 'root', 'qwer1234');
+        $this->pdo = ConnectToBD::getInstance();
     }
 
     public function getAll(): array

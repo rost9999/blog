@@ -14,42 +14,35 @@ class UsersController
         $this->UserRepository = new UserRepository();
     }
 
-    public function default(): void
+    public function registerFrom(): void
     {
-        View::render('login_form');
-    }
-
-    public function choice(): void
-    {
-        if (isset($_POST['login'])) {
-            $this->login();
-        } else {
-            $this->register();
-        }
+        View::render('register_form');
     }
 
     public function register(): void
     {
-        $isAdd = $this->UserRepository->addUser($_POST['email'], $_POST['password']);
-        if ($isAdd) {
+        if ((strlen($_POST['email']) < 4) or (strlen($_POST['password']) < 4)) {
+            View::render('register_form');
+            echo '<p> Email and password must be more than 4 character</p>';
+        } elseif (!($this->UserRepository->getUser($_POST['email']))) {
+            $this->UserRepository->registerUser($_POST['email'], $_POST['password']);
             $_SESSION['login'] = $_POST['email'];
             header('Location: /');
         } else {
-            $this->default();
-            echo "some error";
+            View::render('register_form');
+            echo '<p> Email is registered</p>';
         }
     }
 
     public function login()
     {
-        $user = $this->UserRepository->getUser($_POST['email'], $_POST['password'])[0];
-        if (password_verify($_POST['password'], $user['password'])) {
-            $_SESSION['login'] = $_POST['email'];
-            header('Location: /');
-        } else {
-            $this->default();
-            echo "incorrect password";
-        }
+        Auth::login($_POST['email'],$_POST['password']);
+        header('Location: /');
+    }
+
+    public function default(): void
+    {
+        View::render('login_form');
     }
 
     public function logout()
@@ -57,4 +50,6 @@ class UsersController
         $_SESSION = [];
         header('Location: /');
     }
+
 }
+
