@@ -39,14 +39,13 @@ class HomeController
 
     public function viewEditArticle(int $id): void
     {
-
         $article = $this->articleRepository->getArticle($id);
         View::render('form', ['article' => $article]);
     }
 
     public function editArticle(int $id): void
     {
-        $this->articleRepository->editArticle($id,$_POST['name'],$_POST['text']);
+        $this->articleRepository->editArticle($id, $_POST['name'], $_POST['text']);
         header('Location: /');
     }
 

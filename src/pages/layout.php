@@ -1,7 +1,7 @@
 <?php
 /** @var array $content */
-if (!empty($_SESSION['login'])) {
-    $greetings = "hello :" . $_SESSION['login'];
+if (!empty($_SESSION['id'])) {
+    $greetings = "hello :" . $_SESSION['id'];
     $method = "/users/logout";
     $textButton = 'LogOut';
 } else {

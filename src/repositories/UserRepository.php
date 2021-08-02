@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Repositories;
 
 use PDO;
@@ -13,7 +12,8 @@ class UserRepository
     {
         $this->pdo = ConnectToBD::getInstance();
     }
-    public function registerUser(string $login, string $password): bool
+
+    public function registerUser(string $login, string $password): ?bool
     {
         $sql = $this->pdo->prepare("INSERT INTO `users` (login,password) VALUES (:login,:password)");
         $password = password_hash($password, PASSWORD_DEFAULT);
@@ -28,7 +28,5 @@ class UserRepository
         } else {
             return null;
         }
-
     }
-
 }

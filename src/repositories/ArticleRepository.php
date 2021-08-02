@@ -6,8 +6,6 @@ use PDO;
 
 class ArticleRepository
 {
-
-
     private PDO $pdo;
 
     public function __construct()

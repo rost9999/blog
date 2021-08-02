@@ -4,7 +4,8 @@
 
 <div class="row">
     <div class="col">
-        <form action="/home/<?= !empty($data['article']) ? "editArticle/" . $data['article']['id'] : "addArticle" ?>" method="post">
+        <form action="/home/<?= !empty($data['article']) ? "editArticle/" . $data['article']['id'] : "addArticle" ?>"
+              method="post">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="name" name="name"
                        value=<?= $data['article']['name'] ?? ""; ?>>
