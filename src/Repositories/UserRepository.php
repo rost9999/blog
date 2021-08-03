@@ -2,7 +2,7 @@
 
 namespace Repositories;
 
-use Components\ConnectToBD;
+use Components\DbConnection;
 use PDO;
 
 class UserRepository
@@ -11,7 +11,7 @@ class UserRepository
 
     public function __construct()
     {
-        $this->pdo = ConnectToBD::getInstance();
+        $this->pdo = DbConnection::getInstance();
     }
 
     public function registerUser(string $login, string $password): ?bool

@@ -4,7 +4,7 @@ namespace Components;
 
 use PDO;
 
-class ConnectToBD
+class DbConnection
 {
     private static ?PDO $instance = null;
 

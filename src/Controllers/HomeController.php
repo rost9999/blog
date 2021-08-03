@@ -2,8 +2,8 @@
 
 namespace Controllers;
 
+use Components\View;
 use repositories\ArticleRepository;
-use views\View;
 
 class HomeController
 {

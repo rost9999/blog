@@ -2,16 +2,16 @@
 
 namespace Controllers;
 
+use Components\View;
 use repositories\UserRepository;
-use views\View;
 
 class UsersController
 {
-    protected UserRepository $UserRepository;
+    protected UserRepository $userRepository;
 
     public function __construct()
     {
-        $this->UserRepository = new UserRepository();
+        $this->userRepository = new UserRepository();
     }
 
     public function default(): void
@@ -34,7 +34,7 @@ class UsersController
             $errors[] = 'Password must be more than 4 character';
         }
         if (!$errors) {
-            $result = $this->UserRepository->registerUser($_POST['email'], $_POST['password']);
+            $result = $this->userRepository->registerUser($_POST['email'], $_POST['password']);
             View::render('login_form', ['result' => $result]);
         } else {
             View::render('register_form', ['errors' => $errors]);
@@ -44,7 +44,7 @@ class UsersController
     public function login()
     {
         $errors = [];
-        $user = $this->UserRepository->getUser($_POST['email']);
+        $user = $this->userRepository->getUser($_POST['email']);
         if (!$user) {
             $errors[] = 'Email not registered';
         } elseif (!password_verify($_POST['password'], $user['password'])) {
