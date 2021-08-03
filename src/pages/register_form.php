@@ -1,5 +1,16 @@
+<?php
+/** @var array $data */
+?>
+
 <div class="row">
-    <p>please fill in the fields </p>
+    <?php if (isset($data['errors'])): ?>
+        <ul>
+            <?php foreach ($data['errors'] as $error): ?>
+                <li> - <?php echo $error; ?></li>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
+    <p>Fill in the fields </p>
     <div class="col-md-auto">
         <form action="/users/register" method="post">
             <div class="form-group">

@@ -1,15 +1,7 @@
 <?php
 /** @var array $content */
-if (!empty($_SESSION['id'])) {
-    $greetings = "hello :" . $_SESSION['id'];
-    $method = "/users/logout";
-    $textButton = 'LogOut';
-} else {
-    $greetings = "please login";
-    $method = "/users";
-    $textButton = 'Login';
-}
 ?>
+
 <!doctype html>
 <html lang="ru">
 <head>
@@ -30,8 +22,9 @@ if (!empty($_SESSION['id'])) {
             ?>
         </div>
         <div class="col">
-            <p class="text-end"><?= $greetings ?> </p>
-            <a href=<?= $method ?> type="button" class="btn btn-success float-end"><?= $textButton ?></a>
+            <p class="text-end"><?= !empty($_SESSION['id']) ? 'hello :' . $_SESSION['id'] : 'please login'; ?> </p>
+            <a href=<?= !empty($_SESSION['id']) ? '/users/logout' : '/users'; ?> type="button"
+               class="btn btn-success float-end"><?= !empty($_SESSION['id']) ? 'LogOut' : 'Login'; ?></a>
         </div>
     </div>
 

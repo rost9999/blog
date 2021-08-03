@@ -14,36 +14,48 @@ class UsersController
         $this->UserRepository = new UserRepository();
     }
 
-    public function registerFrom(): void
+    public function default(): void
+    {
+        View::render('login_form');
+    }
+
+    public function registerFrom()
     {
         View::render('register_form');
     }
 
-    public function register(): void
+    public function register()
     {
-        if ((strlen($_POST['email']) < 4) or (strlen($_POST['password']) < 4)) {
-            View::render('register_form');
-            echo '<p> Email and password must be more than 4 character</p>';
-        } elseif (!($this->UserRepository->getUser($_POST['email']))) {
-            $user = $this->UserRepository->registerUser($_POST['email'], $_POST['password']);
-            $_SESSION['id'] = $user ? $this->UserRepository->getUser($_POST['email'])['id'] : null;
-            header('Location: /');
+        $errors = [];
+        if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+            $errors[] = 'Fill correct email';
+        }
+        if (!(strlen($_POST['password']) > 3)) {
+            $errors[] = 'Password must be more than 4 character';
+        }
+        if (!$errors) {
+            $result = $this->UserRepository->registerUser($_POST['email'], $_POST['password']);
+            View::render('login_form', ['result' => $result]);
         } else {
-            View::render('register_form');
-            echo '<p> Email is registered</p>';
+            View::render('register_form', ['errors' => $errors]);
         }
     }
 
     public function login()
     {
+        $errors = [];
         $user = $this->UserRepository->getUser($_POST['email']);
-        $_SESSION['id'] = $user['id'];
-        header('Location: /');
-    }
-
-    public function default(): void
-    {
-        View::render('login_form');
+        if (!$user) {
+            $errors[] = 'Email not registered';
+        } elseif (!password_verify($_POST['password'], $user['password'])) {
+            $errors[] = 'Password is incorrect';
+        }
+        if (!$errors) {
+            $_SESSION['id'] = $user['id'];
+            header('Location: /');
+        } else {
+            View::render('login_form', ['errors' => $errors]);
+        }
     }
 
     public function logout()

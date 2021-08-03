@@ -2,6 +2,7 @@
 
 namespace Repositories;
 
+use Components\ConnectToBD;
 use PDO;
 
 class UserRepository
