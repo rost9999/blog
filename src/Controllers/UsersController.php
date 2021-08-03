@@ -30,12 +30,12 @@ class UsersController
         if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
             $errors[] = 'Fill correct email';
         }
-        if (!(strlen($_POST['password']) > 3)) {
+        if ((strlen($_POST['password']) < 3)) {
             $errors[] = 'Password must be more than 4 character';
         }
         if (!$errors) {
             $result = $this->userRepository->registerUser($_POST['email'], $_POST['password']);
-            View::render('login_form', ['result' => $result]);
+            View::render('login_form', ['result' => 'Register complete']);
         } else {
             View::render('register_form', ['errors' => $errors]);
         }

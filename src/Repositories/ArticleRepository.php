@@ -30,7 +30,7 @@ class ArticleRepository
 
     public function addArticle(string $name, string $text): void
     {
-        $sql = $this->pdo->prepare("INSERT INTO `articles` (name,text) VALUES (:name,:text)");
+        $sql = $this->pdo->prepare("INSERT INTO `articles` (name,text) VALUES (:name, :text)");
         $sql->execute(['name' => $name, 'text' => $text]);
     }
 
@@ -42,7 +42,7 @@ class ArticleRepository
 
     public function deleteArticle(int $id): void
     {
-        $sql = $this->pdo->prepare("DELETE FROM `articles` WHERE  id =:id");
+        $sql = $this->pdo->prepare("DELETE FROM `articles` WHERE  id = :id");
         $sql->execute(['id' => $id]);
     }
 }
