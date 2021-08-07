@@ -20,7 +20,7 @@ $user = Auth::user();
     <div class="row">
         <div class="col">
             <?= $_SERVER['REQUEST_URI'] == "/" ?
-                '<a href="/home/viewAddArticle" type="button" class="btn btn-success">Add Article</a>'
+                isset($user['admin']) && $user['admin'] == 1 ? '<a href="/home/viewAddArticle" type="button" class="btn btn-success">Add Article</a>' : ''
                 :
                 '<a href="/" type="button" class="btn btn-success">Back</a>'
             ?>
@@ -31,7 +31,7 @@ $user = Auth::user();
                class="btn btn-success float-end"><?= !empty($_SESSION['id']) ? 'LogOut' : 'Login'; ?></a>
         </div>
     </div>
-
+    
     <?= $content; ?>
 
 </body>

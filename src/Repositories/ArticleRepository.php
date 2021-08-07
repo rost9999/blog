@@ -39,7 +39,7 @@ class ArticleRepository
         $sql = $this->pdo->prepare("UPDATE `articles` SET name = :name, text = :text WHERE id = :id");
         $sql->execute(['id' => $id, 'name' => $name, 'text' => $text]);
     }
-
+    
     public function deleteArticle(int $id): void
     {
         $sql = $this->pdo->prepare("DELETE FROM `articles` WHERE  id = :id");

@@ -17,4 +17,11 @@ class Auth
             return null;
         }
     }
+    public static function getUser($id)
+    {
+        $pdo = DbConnection::getInstance();
+        $sql = $pdo->prepare("SELECT * FROM `users` WHERE id = :id LIMIT 1");
+        $sql->execute(['id' => $id]);
+        return $sql->fetch(PDO::FETCH_ASSOC);
+    }
 }

@@ -4,7 +4,7 @@
 
 <div class="row">
     <div class="col-md-auto">
-        <?= empty($data['result']) ? '' : '<p> '.$data['result'].' </p>' ?>
+        <?= empty($data['result']) ? '' : '<p> ' . $data['result'] . ' </p>' ?>
         <?= empty($data['errors']) ? '' : '<p> ' . $data['errors'][0] . ' </p>' ?>
         <form action="/users/login" method="post">
             <div class="form-group">

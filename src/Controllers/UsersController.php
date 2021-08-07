@@ -8,22 +8,22 @@ use repositories\UserRepository;
 class UsersController
 {
     protected UserRepository $userRepository;
-
+    
     public function __construct()
     {
         $this->userRepository = new UserRepository();
     }
-
+    
     public function default(): void
     {
         View::render('login_form');
     }
-
+    
     public function registerFrom()
     {
         View::render('register_form');
     }
-
+    
     public function register()
     {
         $errors = [];
@@ -40,7 +40,7 @@ class UsersController
             View::render('register_form', ['errors' => $errors]);
         }
     }
-
+    
     public function login()
     {
         $errors = [];
@@ -57,7 +57,7 @@ class UsersController
             View::render('login_form', ['errors' => $errors]);
         }
     }
-
+    
     public function logout()
     {
         $_SESSION = [];
