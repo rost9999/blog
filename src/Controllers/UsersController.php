@@ -52,7 +52,7 @@ class UsersController
         }
         if (!$errors) {
             $_SESSION['id'] = $user['id'];
-            header('Location: /');
+            header("Refresh:0");
         } else {
             View::render('login_form', ['errors' => $errors]);
         }
