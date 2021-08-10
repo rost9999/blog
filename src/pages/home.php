@@ -9,7 +9,7 @@
                 <div class="card-body">
                     <h5 class="card-title"><?= $article['name']; ?></h5>
                     <p class="card-text"><?= $article['text']; ?></p>
-                    <a href="/home/viewArticle/<?= $article['id']; ?>" class="btn btn-primary">Read</a>
+                    <a href="/article/viewArticle/<?= $article['id']; ?>" class="btn btn-primary">Read</a>
                 </div>
             </div>
         </div>

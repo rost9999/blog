@@ -7,7 +7,7 @@ use PDO;
 class DbConnection
 {
     private static $instance;
-
+    
     public static function getInstance(): PDO
     {
         if (!self::$instance) {

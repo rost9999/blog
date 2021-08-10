@@ -27,6 +27,13 @@ class CommentRepository
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
+    public function getComment(int $id): array
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM `comments` WHERE id = :id LIMIT 1");
+        $stmt->execute(['id' => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    
     public function deleteComment(int $id): void
     {
         $sql = $this->pdo->prepare("DELETE FROM `comments` WHERE  id = :id");

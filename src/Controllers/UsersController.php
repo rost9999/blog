@@ -34,7 +34,7 @@ class UsersController
             $errors[] = 'Password must be more than 4 character';
         }
         if (!$errors) {
-            $result = $this->userRepository->registerUser($_POST['email'], $_POST['password']);
+            $this->userRepository->registerUser($_POST['email'], $_POST['password']);
             View::render('login_form', ['result' => 'Register complete']);
         } else {
             View::render('register_form', ['errors' => $errors]);
