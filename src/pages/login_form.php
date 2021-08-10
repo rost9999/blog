@@ -4,8 +4,8 @@
 
 <div class="row">
     <div class="col-md-auto">
-        <?= empty($data['result']) ? '' : '<p> ' . $data['result'] . ' </p>' ?>
-        <?= empty($data['errors']) ? '' : '<p> ' . $data['errors'][0] . ' </p>' ?>
+        <?= empty($data['result']) ? '' : '<p> ' . $data['result'] . ' </p>' ?> давай писать все резалты
+        <?= empty($data['errors']) ? '' : '<p> ' . $data['errors'][0] . ' </p>' ?> давай писать все ошибки
         <form action="/users/login" method="post">
             <div class="form-group">
                 <input type="email" class="form-control" placeholder="email" name="email">

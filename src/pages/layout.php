@@ -1,5 +1,5 @@
 <?php
-/** @var array $content */
+/** @var array $content */ // точно стринг?
 
 use Components\Auth;
 
@@ -19,7 +19,8 @@ $user = Auth::user();
 <div class="container">
     <div class="row">
         <div class="col">
-            <?= $_SERVER['REQUEST_URI'] == "/" ?
+            <?= $_SERVER['REQUEST_URI'] == "/" ? // сложно читать. разбей на несколько строк. ты по факту и так разбиваешь)
+                // но тернарка в тернарке - не желательно
                 isset($user['admin']) && $user['admin'] == 1 ? '<a href="/article/viewAddArticle" type="button" class="btn btn-success">Add Article</a>' : ''
                 :
                 '<a href="/" type="button" class="btn btn-success">Back</a>'

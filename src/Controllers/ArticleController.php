@@ -31,7 +31,7 @@ class ArticleController
     
     public function addArticle(): void
     {
-        $this->articleRepository->addArticle($_POST['name'], $_POST['text']);
+        $this->articleRepository->addArticle($_POST['name'], $_POST['text']); // окей. но вообще такие вещи мы сначала валидируем потом пишем в БД. пока оставь
         header('Location: /');
     }
     

@@ -24,10 +24,12 @@ class UserRepository
     public function getUser(string $login): ?array
     {
         $sql = $this->pdo->prepare("SELECT * FROM `users` WHERE login = :login LIMIT 1");
-        if ($sql->execute(['login' => $login])) {
+        if ($sql->execute(['login' => $login])) { // я думаю в любом случае будет тру.
+            // execute() дает фолс если была ошибка при ывборке. а ошибки нет, просто нет такой записи в БД
+            // так что проверять нужно fetch() а не execute()
             return $sql->fetch(PDO::FETCH_ASSOC);
         }
-        return null;
 
+        return null;
     }
 }
