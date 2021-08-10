@@ -26,7 +26,7 @@ $user = Auth::user();
             ?>
         </div>
         <div class="col">
-            <p class="text-end"><?= !empty($_SESSION['id']) ? 'hello :' . $user['login'] : 'please login'; ?> </p>
+            <p class="text-end"><?= !empty($_SESSION['id']) ? 'hello :' . $user['email'] : 'please login'; ?> </p>
             <a href=<?= !empty($_SESSION['id']) ? '/users/logout' : '/users'; ?> type="button"
                class="btn btn-success float-end"><?= !empty($_SESSION['id']) ? 'LogOut' : 'Login'; ?></a>
         </div>

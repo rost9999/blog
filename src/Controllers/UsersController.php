@@ -27,6 +27,10 @@ class UsersController
     public function register()
     {
         $errors = [];
+        $user = $this->userRepository->getUser($_POST['email']);
+        if ($user){
+            $errors[] = 'Email already exist';
+        }
         if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
             $errors[] = 'Fill correct email';
         }
@@ -52,7 +56,7 @@ class UsersController
         }
         if (!$errors) {
             $_SESSION['id'] = $user['id'];
-            header("Refresh:0");
+            header('Location: /');
         } else {
             View::render('login_form', ['errors' => $errors]);
         }

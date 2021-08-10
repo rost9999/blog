@@ -3,6 +3,7 @@
 
 use Components\Auth;
 
+$owners = new \Repositories\UserRepository();
 $user = Auth::user();
 ?>
 
@@ -34,12 +35,12 @@ $user = Auth::user();
     </div>
 
 <?php foreach ($data['comments'] as $comment): ?>
-    <?php $owner = Auth::user($comment['user_id']); ?>
+    <?php $owner = $owners->getUserById($comment['user_id']); ?>
     <div class="row">
         <div class="col">
             <div class="card" style="width: fit-content;">
                 <div class="card-body">
-                    <h6 class="card-subtitle mb-2 text-muted"><?= $owner['login'] ?></h6>
+                    <h6 class="card-subtitle mb-2 text-muted"><?= $owner['email'] ?></h6>
                     <?= $comment['text'] ?>
                 </div>
             </div>

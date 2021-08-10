@@ -6,18 +6,16 @@ use PDO;
 
 class Auth
 {
-    public static function user($id = null)
+    public static function user()
     {
-        if (isset($_SESSION['id'])) {
-            $id = $_SESSION['id'];
-        }
-        $pdo = DbConnection::getInstance();
-        if ($id) {
+        if (!empty($_SESSION['id'])) {
+            $pdo = DbConnection::getInstance();
             $sql = $pdo->prepare("SELECT * FROM `users` WHERE id = :id LIMIT 1");
             $sql->execute(['id' => $_SESSION['id']]);
             return $sql->fetch(PDO::FETCH_ASSOC);
         } else {
             return null;
         }
+        
     }
 }
