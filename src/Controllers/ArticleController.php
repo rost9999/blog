@@ -20,8 +20,8 @@ class ArticleController
     public function viewArticle(int $id): void
     {
         $article = $this->articleRepository->getArticle($id);
-        $comments = $this->commentRepository->getComments($id);
-        View::render('article', ['article' => $article, 'comments' => $comments]);
+
+        View::render('article', ['article' => $article]);
     }
     
     public function viewAddArticle(): void
