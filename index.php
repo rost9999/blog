@@ -3,6 +3,9 @@
 require_once "./vendor/autoload.php";
 
 use controllers\HomeController;
+use Dotenv\Dotenv;
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
 session_start();
 

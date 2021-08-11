@@ -16,6 +16,5 @@ class Auth
         } else {
             return null;
         }
-        
     }
 }
