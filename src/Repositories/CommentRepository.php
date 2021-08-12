@@ -18,7 +18,6 @@ class CommentRepository
     {
         $stmt = $this->pdo->prepare('INSERT INTO comments (article_id, user_id, text) VALUES (:article_id, :user_id, :text)');
         $stmt->execute(['article_id' => $article_id, 'user_id' => $user_id, 'text' => $text]);
-        $comment = $this->getComment()
     }
 
     public function getComments(int $id): array

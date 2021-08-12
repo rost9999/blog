@@ -3,10 +3,7 @@
 
 use Components\Auth;
 
-$owners = new \Repositories\UserRepository();
 $user = Auth::user();
-$commentsClass = new \Repositories\CommentRepository();
-$comments = $commentsClass->getComments($data['article']['id']);
 ?>
 
 <div class="row">
@@ -25,50 +22,36 @@ $comments = $commentsClass->getComments($data['article']['id']);
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col">
-        <!--            <form action="/comment/addComment" method="post">-->
-        <form id="formElem">
-            <textarea class="form-control" name="text" placeholder="Add comment" rows="3"></textarea>
-            <input type="hidden" name="article_id" id="article_id" value="<?php echo $data['article']['id'] ?>"/>
-            <input type="hidden" name="user_id" id="user_id" value="<?php echo $user['id'] ?>"/>
-            <button type="submit"  class="btn btn-primary float-end">Add</button>
-        </form>
-    </div>
-</div>
-
-<?php foreach ($comments as $comment): ?>
-    <?php $owner = $owners->getUserById($comment['user_id']); ?>
+<?php if ($user): ?>
     <div class="row">
         <div class="col">
-            <div class="card" style="width: fit-content;">
-                <div class="card-body">
-                    <h6 class="card-subtitle mb-2 text-muted"><?= $owner['email'] ?></h6>
-                    <?= $comment['text'] ?>
-                </div>
-            </div>
-            <?php if (isset($user['admin']) && $user['admin'] == 1): ?>
-                <a href="#/<?= $comment['id']; ?>" class="btn btn-success">Edit</a>
-                <a href="/comment/deleteComment/<?= $comment['id']; ?>" class="btn btn-danger">Delete</a>
-            <?php endif; ?>
+<!--            <form action="/comment/addComment" method="post">-->
+                        <form id="formElem">
+                <textarea class="form-control" name="text" placeholder="Add comment" rows="3"></textarea>
+                <input type="hidden" name="article_id" id="article_id" value="<?php echo $data['article']['id'] ?>"/>
+                <input type="hidden" name="user_id" id="user_id" value="<?php echo $user['id'] ?>"/>
+                <button type="submit" class="btn btn-primary float-end">Add</button>
+            </form>
         </div>
     </div>
-<?php endforeach; ?>
+<?php endif; ?>
+<div id="commentBlock">
+    <?php
+    include "./src/pages/comment.php";
+    ?>
+</div>
 
 <script>
-    let getPostRequest = () => {
-        formElem.onsubmit = async (e) => {
-            e.preventDefault();
-            result = new FormData(formElem);
-            // let response = await fetch('/comment/addComment', {
-            //     method: 'POST',
-            //     body: new FormData(formElem)
-            // });
-            //
-            // let result = await response.json();
+    formElem.onsubmit = async (e) => {
+        e.preventDefault();
 
-            alert(result.message);
-        };
-    }
+        let response = await fetch('/comment/addComment', {
+            method: 'POST',
+            body: new FormData(formElem)
+        });
 
+        let result = await response.text();
+
+        document.getElementById('commentBlock').innerHTML = result;
+    };
 </script>

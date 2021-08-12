@@ -12,16 +12,22 @@ class CommentController
     {
         $this->commentRepository = new CommentRepository();
     }
+    public function renderCommentBlock() {
+        include "./src/pages/comment.php";
+    }
 
     public function addComment(): void
     {
         $this->commentRepository->addComment($_POST['article_id'], $_POST['user_id'], $_POST['text']);
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        $this->renderCommentBlock();
+
     }
 
     public function deleteComment(int $id): void
     {
         $this->commentRepository->deleteComment($id);
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
+
     }
+
+
 }
