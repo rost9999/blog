@@ -1,14 +1,9 @@
 <?php
-/** @var array $comments */
 $owners = new \Repositories\UserRepository();
-$user = \Components\Auth::user();
-
-
 $commentsClass = new \Repositories\CommentRepository();
 $comments = $commentsClass->getComments($data['article']['id']);
+$user = \Components\Auth::user();
 ?>
-
-
 
 <?php foreach ($comments as $comment): ?>
     <?php $owner = $owners->getUserById($comment['user_id']); ?>
@@ -21,8 +16,16 @@ $comments = $commentsClass->getComments($data['article']['id']);
                 </div>
             </div>
             <?php if (isset($user['admin']) && $user['admin'] == 1): ?>
-                <a href="/comment/deleteComment/<?= $comment['id']; ?>" class="btn btn-danger">Delete</a>
+                <a onclick="sendGet(<?= $comment['id']; ?>)" class="btn btn-danger">Delete</a>
             <?php endif; ?>
         </div>
     </div>
 <?php endforeach; ?>
+
+<script>
+    const sendGet = async (id) => {
+        let response = await fetch("/comment/deleteComment/" + id);
+        let result = await response.text();
+        document.getElementById('commentBlock').innerHTML = result;
+    }
+</script>

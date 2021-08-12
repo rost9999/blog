@@ -34,7 +34,7 @@ $user = Auth::user();
                class="btn btn-success float-end"><?= !empty($_SESSION['id']) ? 'LogOut' : 'Login'; ?></a>
         </div>
     </div>
-    
+
     <?= $content; ?>
 
 </body>

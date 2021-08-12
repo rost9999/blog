@@ -1,9 +1,6 @@
 <?php
 /** @var array $data */
-
-use Components\Auth;
-
-$user = Auth::user();
+$user = \Components\Auth::user();
 ?>
 
 <div class="row">
@@ -30,7 +27,7 @@ $user = Auth::user();
                 <textarea class="form-control" name="text" placeholder="Add comment" rows="3"></textarea>
                 <input type="hidden" name="article_id" id="article_id" value="<?php echo $data['article']['id'] ?>"/>
                 <input type="hidden" name="user_id" id="user_id" value="<?php echo $user['id'] ?>"/>
-                <button type="submit" onclick="sendForm(this)" class="btn btn-primary float-end">Add</button>
+                <a onclick="sendPost()" class="btn btn-primary float-end">Add</a>
             </form>
         </div>
     </div>
@@ -42,13 +39,12 @@ $user = Auth::user();
 </div>
 
 <script>
-    let sendForm = async (e) => {
-        e.preventDefault();
+    const sendPost = async () => {
         let response = await fetch('/comment/addComment', {
             method: 'POST',
             body: new FormData(formElem)
         });
         let result = await response.text();
         document.getElementById('commentBlock').innerHTML = result;
-    };
+    }
 </script>
