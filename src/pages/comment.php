@@ -3,7 +3,7 @@
 $owners = new \Repositories\UserRepository();
 
 $commentsClass = new \Repositories\CommentRepository();
-$comments = $commentsClass->getComments(1);
+$comments = $commentsClass->getComments($data['article']['id']);
 ?>
 
 
