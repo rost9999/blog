@@ -27,6 +27,8 @@ class CommentController
 
     public function deleteComment(int $id): void
     {
+        $article_id = $this->commentRepository->getComment($id)['article_id'];
         $this->commentRepository->deleteComment($id);
+        $this->renderCommentBlock($article_id);
     }
 }

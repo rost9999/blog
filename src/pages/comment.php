@@ -1,6 +1,8 @@
 <?php
 /** @var array $comments */
 $owners = new \Repositories\UserRepository();
+$user = \Components\Auth::user();
+
 
 $commentsClass = new \Repositories\CommentRepository();
 $comments = $commentsClass->getComments($data['article']['id']);
@@ -19,7 +21,6 @@ $comments = $commentsClass->getComments($data['article']['id']);
                 </div>
             </div>
             <?php if (isset($user['admin']) && $user['admin'] == 1): ?>
-                <a href="#/<?= $comment['id']; ?>" class="btn btn-success">Edit</a>
                 <a href="/comment/deleteComment/<?= $comment['id']; ?>" class="btn btn-danger">Delete</a>
             <?php endif; ?>
         </div>

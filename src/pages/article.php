@@ -25,12 +25,12 @@ $user = Auth::user();
 <?php if ($user): ?>
     <div class="row">
         <div class="col">
-<!--            <form action="/comment/addComment" method="post">-->
-                        <form id="formElem">
+            <!--            <form action="/comment/addComment" method="post">-->
+            <form id="formElem">
                 <textarea class="form-control" name="text" placeholder="Add comment" rows="3"></textarea>
                 <input type="hidden" name="article_id" id="article_id" value="<?php echo $data['article']['id'] ?>"/>
                 <input type="hidden" name="user_id" id="user_id" value="<?php echo $user['id'] ?>"/>
-                <button type="submit" class="btn btn-primary float-end">Add</button>
+                <button type="submit" onclick="sendForm(this)" class="btn btn-primary float-end">Add</button>
             </form>
         </div>
     </div>
@@ -42,16 +42,13 @@ $user = Auth::user();
 </div>
 
 <script>
-    formElem.onsubmit = async (e) => {
+    let sendForm = async (e) => {
         e.preventDefault();
-
         let response = await fetch('/comment/addComment', {
             method: 'POST',
             body: new FormData(formElem)
         });
-
         let result = await response.text();
-
         document.getElementById('commentBlock').innerHTML = result;
     };
 </script>
