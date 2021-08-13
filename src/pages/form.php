@@ -14,6 +14,10 @@
                 <textarea class='form-control' placeholder='textarea'
                           name='text'><?= $data['article']['text'] ?? ''; ?></textarea>
             </div>
+            <div class='form-group w-25 p-3'>
+                <label for="formFile" class="form-label">Add image to Article</label>
+                <input class="form-control" type="file" id="formFile">
+            </div>
             <button type='submit' class='btn btn-primary'>Submit</button>
         </form>
     </div>
