@@ -19,7 +19,8 @@ $user = Auth::user();
 <div class="container">
     <div class="row">
         <div class="col">
-            <?= $_SERVER['REQUEST_URI'] == "/" ?
+            // не понимаю как оно будет выглядеть в браузере но мне не нравится эта логика
+            <?= $_SERVER['REQUEST_URI'] == "/" ? // двойная кавычка. пожалуйста перепроверяй все. мы это обсуждали миллион раз. чеклист перед коммитом себе сделай
                 ''
                 :
                 '<a href="/" type="button" class="btn btn-success">Back</a>'; ?>

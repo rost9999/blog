@@ -42,10 +42,11 @@ $user = \Components\Auth::user();
 </div>
 
 <script>
-    const sendPost = async () => {
+    // это нужно вынести в отдельный джс файл. так ты сможешеь переиспользовать куски кода с разных страничек
+    const sendPost = async () => { // почему это называется sendPost ?
         let response = await fetch('/comment/addComment', {
             method: 'POST',
-            body: new FormData(formElem)
+            body: new FormData(formElem) // нет у тебя такой переменной formElem
         });
         let result = await response.text();
         document.getElementById('commentBlock').innerHTML = result;

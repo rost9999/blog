@@ -34,7 +34,7 @@ class UsersController
         if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
             $errors[] = 'Fill correct email';
         }
-        if ((strlen($_POST['password']) < 3)) {
+        if ((strlen($_POST['password']) < 3)) { // зачем двойные (( ?
             $errors[] = 'Password must be more than 4 character';
         }
         if (!$errors) {
@@ -45,7 +45,7 @@ class UsersController
         }
     }
 
-    public function login()
+    public function login() // или везде пиши тайпхинты или нигде. нешать подходы нельзя. сколько раз мы это обсуждали?
     {
         $errors = [];
         $user = $this->userRepository->getUser($_POST['email']);

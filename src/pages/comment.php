@@ -1,7 +1,7 @@
 <?php
-$owners = new \Repositories\UserRepository();
+$owners = new \Repositories\UserRepository(); // мы во вьюшке запросов в БД не делаем. все в контроллере. вью это про вывод данных а не про их получение и обработку
 $commentsClass = new \Repositories\CommentRepository();
-$comments = $commentsClass->getComments($data['article']['id']);
+$comments = $commentsClass->getComments($data['article']['id']); // скажи пхпшторму что такая переменная существует
 $user = \Components\Auth::user();
 ?>
 
@@ -15,7 +15,7 @@ $user = \Components\Auth::user();
                     <?= $comment['text'] ?>
                 </div>
             </div>
-            <?php if (isset($user['admin']) && $user['admin'] == 1): ?>
+            <?php if (isset($user['admin']) && $user['admin'] == 1): ?> // хуже некуда. нужна система с ролями и правами доступа пользователей. но наверное уже в след проетке. я подумаю
                 <a onclick="sendGet(<?= $comment['id']; ?>)" class="btn btn-danger">Delete</a>
             <?php endif; ?>
         </div>
@@ -23,7 +23,7 @@ $user = \Components\Auth::user();
 <?php endforeach; ?>
 
 <script>
-    const sendGet = async (id) => {
+    const sendGet = async (id) => { // sendGet это что? мне это ни о чем не говорит когда я читаю код
         let response = await fetch("/comment/deleteComment/" + id);
         let result = await response.text();
         document.getElementById('commentBlock').innerHTML = result;

@@ -19,7 +19,7 @@ class CommentController
         $this->renderCommentBlock($_POST['article_id']);
     }
 
-    public function renderCommentBlock($id)
+    public function renderCommentBlock($id) // похоже на приватный метод. + тайпхинты
     {
         $data['article']['id'] = $id;
         include "./src/pages/comment.php";

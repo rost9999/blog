@@ -1,7 +1,7 @@
-<?php
+<?php // пустая строка
 require_once "./vendor/autoload.php";
 
-use Components\Auth;
+use Components\Auth; // лишнее
 use controllers\HomeController;
 use Dotenv\Dotenv;
 

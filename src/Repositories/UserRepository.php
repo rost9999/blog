@@ -26,7 +26,7 @@ class UserRepository
         $sql = $this->pdo->prepare('SELECT * FROM users WHERE email = :email LIMIT 1');
         $sql->execute(['email' => $email]);
         $result = $sql->fetch(PDO::FETCH_ASSOC);
-        if ($result) {
+        if ($result) { // не нравится. уж лучше return $result ?? null
             return $result;
         } else {
             return null;
