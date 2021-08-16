@@ -8,7 +8,9 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title"><?= $article['name']; ?></h5>
-                    <img src="/<?= $article['uri']; ?>" class="rounded mx-auto d-block w-auto p-3" ">
+                    <?php if ($article['uri'] != ''): ?>
+                        <img src="/<?= $article['uri']; ?>" class="rounded mx-auto d-block w-auto p-3" ">
+                    <?php endif; ?>
                     <p class="card-text"><?= $article['text']; ?></p>
                     <a href="/article/viewArticle/<?= $article['id']; ?>" class="btn btn-primary">Read</a>
                 </div>
