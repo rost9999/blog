@@ -30,7 +30,8 @@ class ArticleRepository
 
     public function addArticle(string $name, string $text, string $path): void
     {
-        $sql = $this->pdo->prepare('INSERT INTO articles (name,text,URI) VALUES (:name, :text, :URI)');
+        $sql = $this->pdo->prepare('INSERT INTO articles (name,text,URI) VALUES (:name, :text, :URI)'); // URI почему большими буквами?
+        // напиши скрипт миграции плиз. он подключается к БД и создает там нужные таблицы с нужными полями. и в ридми напиши как его запускать и кк он называется
         $sql->execute(['name' => $name, 'text' => $text, 'URI' => $path]);
     }
 

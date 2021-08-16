@@ -8,7 +8,7 @@ class Auth
 {
     private static $user;
 
-    public static function user()
+    public static function user()// тайпхинт
     {
         if (!self::$user && isset($_SESSION['id'])) {
             $pdo = DbConnection::getInstance();

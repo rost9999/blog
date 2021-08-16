@@ -4,7 +4,7 @@ namespace Components;
 
 class View
 {
-    public static function render($page, $data = []): void
+    public static function render($page, $data = []): void // тайпхинты
     {
         ob_start();
         include __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR . $page . '.php';
