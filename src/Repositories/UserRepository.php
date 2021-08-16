@@ -31,7 +31,6 @@ class UserRepository
         } else {
             return null;
         }
-
     }
 
     public function getUserById(int $id): ?array

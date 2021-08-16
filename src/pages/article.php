@@ -8,6 +8,7 @@ $user = \Components\Auth::user();
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title"><?= $data['article']['name']; ?></h5>
+                <img src="/<?= $data['article']['uri']; ?>" class="img-thumbnail">
                 <p class="card-text"><?= $data['article']['text']; ?></p>
                 <?php if (isset($user['admin']) && $user['admin'] == 1): ?>
                     <a href="/article/viewEditArticle/<?= $data['article']['id']; ?>"

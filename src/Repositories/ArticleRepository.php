@@ -28,16 +28,16 @@ class ArticleRepository
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function addArticle(string $name, string $text): void
+    public function addArticle(string $name, string $text, string $path): void
     {
-        $sql = $this->pdo->prepare('INSERT INTO articles (name,text) VALUES (:name, :text)');
-        $sql->execute(['name' => $name, 'text' => $text]);
+        $sql = $this->pdo->prepare('INSERT INTO articles (name,text,URI) VALUES (:name, :text, :URI)');
+        $sql->execute(['name' => $name, 'text' => $text, 'URI' => $path]);
     }
 
-    public function editArticle(int $id, $name, $text): void
+    public function editArticle(int $id, string $name, string $text, string $uri): void
     {
-        $sql = $this->pdo->prepare('UPDATE articles SET name = :name, text = :text WHERE id = :id');
-        $sql->execute(['id' => $id, 'name' => $name, 'text' => $text]);
+        $sql = $this->pdo->prepare('UPDATE articles SET name = :name, text = :text, uri = :uri WHERE id = :id');
+        $sql->execute(['id' => $id, 'name' => $name, 'text' => $text, 'uri' => $uri]);
     }
 
     public function deleteArticle(int $id): void

@@ -4,11 +4,12 @@
 
 <div class='row'>
     <div class='col'>
-        <form action='/article/<?= !empty($data['article']) ? 'editArticle/' . $data['article']['id'] : 'addArticle' ?>'
+        <form enctype="multipart/form-data"
+              action='/article/<?= !empty($data['article']) ? 'editArticle/' . $data['article']['id'] : 'addArticle' ?>'
               method='post'>
             <div class='form-group'>
-                <input type='text' class='form-control' placeholder='name' name='name'
-                       value=<?= $data['article']['name'] ?? ''; ?>>
+                <textarea class='form-control' placeholder='name'
+                          name='name'><?= $data['article']['name'] ?? ''; ?></textarea>
             </div>
             <div class='form-group'>
                 <textarea class='form-control' placeholder='textarea'
@@ -16,7 +17,7 @@
             </div>
             <div class='form-group w-25 p-3'>
                 <label for="formFile" class="form-label">Add image to Article</label>
-                <input class="form-control" type="file" id="formFile">
+                <input class="form-control" name='file' type="file" id="formFile">
             </div>
             <button type='submit' class='btn btn-primary'>Submit</button>
         </form>

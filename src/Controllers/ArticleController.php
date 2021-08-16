@@ -9,7 +9,6 @@ class ArticleController
 {
     protected ArticleRepository $articleRepository;
 
-
     public function __construct()
     {
         $this->articleRepository = new ArticleRepository();
@@ -18,7 +17,6 @@ class ArticleController
     public function viewArticle(int $id): void
     {
         $article = $this->articleRepository->getArticle($id);
-
         View::render('article', ['article' => $article]);
     }
 
@@ -29,8 +27,20 @@ class ArticleController
 
     public function addArticle(): void
     {
-        $this->articleRepository->addArticle($_POST['name'], $_POST['text']);
+        $path = $this->uploadFile();
+        $this->articleRepository->addArticle($_POST['name'], $_POST['text'], $path);
         header('Location: /');
+    }
+
+    public function uploadFile(): string
+    {
+        if (isset($_FILES)) {
+            $path = 'uploads/' . basename($_FILES['file']['name']);
+            move_uploaded_file($_FILES['file']['tmp_name'], $path);
+            return $path;
+        } else {
+            return '';
+        }
     }
 
     public function viewEditArticle(int $id): void
@@ -41,7 +51,10 @@ class ArticleController
 
     public function editArticle(int $id): void
     {
-        $this->articleRepository->editArticle($id, $_POST['name'], $_POST['text']);
+        $article = $this->articleRepository->getArticle($id);
+        $path = $this->uploadFile();
+        $path = $path == '' ? $article['uri'] : $path;
+        $this->articleRepository->editArticle($id, $_POST['name'], $_POST['text'], $path);
         header('Location: /');
     }
 
